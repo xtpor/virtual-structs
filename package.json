@@ -1,6 +1,6 @@
 {
   "name": "virtual-structs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Javascript enumeration library inspired by Rust virtual structs",
   "main": "vstructs.js",
   "scripts": {
