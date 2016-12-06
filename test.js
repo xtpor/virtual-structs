@@ -80,4 +80,21 @@ describe('vstructs', function () {
         /*jshint expr: true*/
         expect(result).to.be.undefined;
     });
+
+    it('extended variants should have access to previous defined methods', function () {
+        var Foo = vstructs('A', 'B');
+
+        Foo.impl({
+            hello: function () {
+                return 'helloworld';
+            }
+        });
+
+        expect(Foo.A().hello()).to.be.equal('helloworld');
+
+        Foo.extend('C');
+
+        expect(Foo.C().hello()).to.be.equal('helloworld');
+    });
+
 });

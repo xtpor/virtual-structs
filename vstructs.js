@@ -17,6 +17,7 @@ var VirtualStructs = module.exports = function (variants) {
     var variantNames = collectArgs(arguments);
     var that = Object.create(VirtualStructs.prototype);
     that.variants = {};
+    that.variants.prototype = Object.create(variantPrototype);
 
     variantNames.forEach(verifyName);
     variantNames.forEach(function (name) {
@@ -28,7 +29,7 @@ var VirtualStructs = module.exports = function (variants) {
 
 VirtualStructs.prototype.extend = function (variant) {
     verifyName(variant);
-    this.variants[variant] = newVariant(variant);
+    this.variants[variant] = newVariant(variant, this.variants.prototype);
     if (!this[variant]) {
         this[variant] = this.variants[variant];
     }
@@ -36,12 +37,9 @@ VirtualStructs.prototype.extend = function (variant) {
 };
 
 VirtualStructs.prototype.impl = function (methods) {
-    Object.keys(this.variants).forEach(function (variantName) {
-        var variantConstructor = this.variants[variantName];
-        Object.keys(methods).forEach(function (methodName) {
-            var method = methods[methodName];
-            variantConstructor.prototype[methodName] = method;
-        });
+    Object.keys(methods).forEach(function (methodName) {
+        var method = methods[methodName];
+        this.variants.prototype[methodName] = method;
     }, this);
     return this;
 };
@@ -96,7 +94,7 @@ variantPrototype.valueOf = function () {
     return this.variant;
 };
 
-var newVariant = function (variant) {
+var newVariant = function (variant, variantPrototype) {
     var ConcreteVariant = function () {
         var that = Object.create(ConcreteVariant.prototype);
         that.variant = variant;
