@@ -1,0 +1,27 @@
+{
+  "name": "virtual-structs",
+  "version": "0.0.1",
+  "description": "Javascript enumeration library inspired by Rust virtual structs",
+  "main": "vstructs.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xtpor/virtual-structs.git"
+  },
+  "keywords": [
+    "enum",
+    "enumeration"
+  ],
+  "author": "Tintin Ho (holoktin97@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xtpor/virtual-structs/issues"
+  },
+  "homepage": "https://github.com/xtpor/virtual-structs#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
