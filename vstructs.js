@@ -66,7 +66,7 @@ variantPrototype.caseOf = function (variant, handler) {
 };
 
 variantPrototype.equals = function (other) {
-    return other.variant === other.variant && this.every(function (v, i) {
+    return this.variant === other.variant && this.every(function (v, i) {
         return v === other[i];
     });
 };

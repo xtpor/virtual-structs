@@ -97,4 +97,11 @@ describe('vstructs', function () {
         expect(Foo.C().hello()).to.be.equal('helloworld');
     });
 
+    it('equality test', function () {
+        var Foo = vstructs('A', 'B');
+
+        assert(Foo.A().equals(Foo.A()));
+        assert(Foo.A().notEquals(Foo.B()));
+    });
+
 });
